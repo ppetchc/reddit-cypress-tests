@@ -31,6 +31,8 @@ Cypress.Commands.add("loginReddit", () => {
 });
 
 Cypress.Commands.add("createTextPostWithImage", ({ title, body }) => {
+  const username = Cypress.env("REDDIT_USERNAME");
+
   // Go to home or your profile, where "Create Post" is available
   cy.visit("/");
 
@@ -57,12 +59,12 @@ Cypress.Commands.add("createTextPostWithImage", ({ title, body }) => {
         .shadow()
         .find('input[placeholder="Select a community"]')
         .click()
-        .type("u/LastAnomaly1", { delay: 80 });
+        .type(`u/${username}`, { delay: 80 });
 
       // Wait for the dropdown item and click it
       cy.contains(
         'faceplate-menu div[role="menuitem"] span.text-14',
-        "u/LastAnomaly1",
+        `u/${username}`,
         { timeout: 10000, matchCase: false }
       )
         .should("be.visible")
