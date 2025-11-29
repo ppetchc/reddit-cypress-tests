@@ -6,3 +6,4 @@ cypress/videos/
 cypress/screenshots/
 .DS_Store
 .env
+cypress.env.json
